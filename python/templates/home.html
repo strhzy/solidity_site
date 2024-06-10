@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контракт</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <style>
+        header {
+            background-color: #008080;
+            color: palegoldenrod
+        }
+        body {
+            background-color: lightcyan;
+            color: teal
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="row justify-content-center">
+            <div class="col-md-12">
+                {% if accnum %}
+                    <h1>Номер аккаунта: {{ accnum }}</h1>
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                {% if accbal >= 0 %}
+                    <h3>Баланс аккаунта: {{ accbal }} wei</h3>
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                {% if conbal >=0 %}
+                    <h3>Баланс контракта: {{ conbal }} wei</h3>
+                {% endif %}
+            </div>
+        </header>
+        <div class="col-md-12">
+            <h1>Доступная недвижимость</h1>
+            <p>
+                {{estates}}
+            </p>
+        </div>
+        <div class="col-md-12">
+            <h1>Доступные объявления</h1>
+            <p>
+                {{ads}}
+            </p>
+        </div>
+        <div class="row ">
+            <div class="card col-md-6 mx-auto my-1">
+                <div class="card-body ">
+                    <h1>Создание недвижимости</h1>
+                    <form class="row" action="/crest" method="post">
+                        <input class="col-md-12" type="number" name="size" placeholder="Площадь">
+                        <input class="col-md-12" type="text" name="address" placeholder="Адрес">
+                        <input class="col-md-12" type="number" name="type" placeholder="Тип">
+                        <button type="submit" method="post">Создать недвижимость</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card col-md-6 mx-auto my-1">
+                <div class="card-body">
+                    <h1>Создание обьявления</h1>
+                    <form class="row" action="/crad" method="post">
+                        <input class="col-md-12" type="number" name="price" placeholder="Цена">
+                        <input class="col-md-12" type="number" name="id" placeholder="Номер недвижимости">
+                        <button type="submit" method="post">Создать обьявление</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card col-md-6 mx-auto my-1">
+                <div class="card-body">
+                    <h1>Изменить статус недвижимости</h1>
+                    <form class="row" action="/chngEst" method="post">
+                        <input class="col-md-12" type="number" name="id" placeholder="Номер обьявления">
+                        <button type="submit">Изменить статус недвижимости</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card col-md-6 mx-auto my-1">
+                <div class="card-body">
+                    <h1>Изменить статус объявления</h1>
+                    <form class="row" action="/chngAd" method="post">
+                        <input class="col-md-12" type="text" name="id-ad" placeholder="Номер обьявления">
+                        <input class="col-md-12" type="text" name="id-est" placeholder="Номер недвижимости">
+                        <button type="submit" method="post">Изменить статус объявления</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card col-md-6 mx-auto my-1">
+                <div class="card-body">
+                    <h1>Купить недвижимость</h1>
+                    <form class="row" action="/buy" method="post">
+                        <input class="col-md-12" type="text" name="id" placeholder="Номер">
+                        <button type="submit" method="post">Купить недвижимость</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card col-md-6 mx-auto my-1">
+                <div class="card-body">
+                    <h1>Депозит</h1>
+                    <form class="row" action="/pay" method="post">
+                        <input class="col-md-12" type="text" name="value" placeholder="Сумма">
+                        <button type="submit" method="post">Внести деньги</button>
+                    </form>
+                </div>
+            </div>
+            <div class="card col-md-6 mx-auto my-1">
+                <div class="card-body">
+                    <h1>Вывод</h1>
+                    <form class="row" action="/withdr" method="post">
+                        <input class="col-md-12" type="text" name="value" placeholder="Сумма">
+                        <button type="submit" method="post">Вывести деньги</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
