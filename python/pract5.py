@@ -175,42 +175,5 @@ def check_pass(password):
     else:
         return True
 
-def withdraw(account):
-    value = int(input("Введите сумму для вывода: "))
-    try:
-        contract.functions.withDraw(value).transact({'from': account})
-    except Exception as e:
-        print(f"Ошибка: {e}")
-    
-def pay(account):
-    value = int(input("Введите сумму для контракта: "))
-    try:
-        contract.functions.pay().transact({'from': account, 'value': value})
-    except Exception as e:
-        print(f"Ошибка: {e}")
-
-def get_balance_own(account):
-    balance = w3.eth.get_balance(account)
-    return balance
-
-def get_balance_contr(address_account):
-    balance = w3.eth.get_balance(address_account)
-    return balance
-
-def get_estates(account):
-    try:
-        estates = contract.functions.getEstates().call({'from': account})
-        return estates
-    except Exception as e:
-        print(f"Ошибка: {e}")
-
-def get_ads(account):
-    try:
-        ads = contract.functions.getAds().call({'from': account})
-        return ads
-    except Exception as e:
-        print(f"Ошибка: {e}")
-
-
 if __name__ == '__main__':
     app.run(debug=True)
